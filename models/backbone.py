@@ -301,6 +301,9 @@ class VisionTransformer(nn.Module):
         #     self.finetune = True
 
         x = self.patch_embed(x)
+
+        print("Shape of patch embeddings:", x.shape)
+
         # interpolate init pe
         if (self.pos_embed.shape[1] - 1 - self.det_token_num) != x.shape[1]:
             temp_pos_embed = self.InterpolateInitPosEmbed(self.pos_embed, img_size=(H,W))
