@@ -329,7 +329,7 @@ class VisionTransformer(nn.Module):
         print("First values of final embeddings:", x[0,:3,:3])
 
         for i in range(len((self.blocks))):
-            if i == 0:
+            if i == 11:
                 print(f"Hidden states before layer {i}:", x[0,:3,:3])
 
             if self.use_checkpoint:
@@ -340,7 +340,7 @@ class VisionTransformer(nn.Module):
                 if i < (self.depth - 1):
                     x = x + temp_mid_pos_embed[i]
 
-            if i == 0:
+            if i == 11:
                 print(f"Hidden states after layer {i}:", x[0,:3,:3])
 
         x = self.norm(x)
