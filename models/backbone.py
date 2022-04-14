@@ -303,6 +303,7 @@ class VisionTransformer(nn.Module):
         x = self.patch_embed(x)
 
         print("Shape of patch embeddings:", x.shape)
+        print("First values of patch embeddings:", x[0,:3,:3])
 
         # interpolate init pe
         if (self.pos_embed.shape[1] - 1 - self.det_token_num) != x.shape[1]:
@@ -323,6 +324,9 @@ class VisionTransformer(nn.Module):
         x = torch.cat((cls_tokens, x, det_token), dim=1)
         x = x + temp_pos_embed
         x = self.pos_drop(x)
+
+        print("Shape of final embeddings:", x.shape)
+        print("First values of final embeddings:", x[0,:3,:3])
 
         for i in range(len((self.blocks))):
             if self.use_checkpoint:
